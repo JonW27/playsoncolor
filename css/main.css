@@ -44,3 +44,6 @@ body {
 .underline {
     text-decoration: underline;
 }
+a{
+    color: inherit;
+}
