@@ -47,6 +47,21 @@
                     g = color.substring(color.length/3, color.length/3*2).substring(0,2);
                     b = color.substring(color.length/3*2, color.length).substring(0,2);
                     color = r+g+b;
+                    // ty stackoverflow
+                    var rgb = parseInt(color, 16);   // convert rrggbb to decimal
+                    var r1 = (rgb >> 16) & 0xff;  // extract red
+                    var g1 = (rgb >>  8) & 0xff;  // extract green
+                    var b1 = (rgb >>  0) & 0xff;  // extract blue
+
+                    var luma = 0.2126 * r1 + 0.7152 * g1 + 0.0722 * b1; // per ITU-R BT.709
+
+                    if (luma < 40) {
+                        document.body.style.color = "#fff";
+                    }
+                    else{
+                        document.body.style.color = "#000";
+                    }
+                    
                     document.body.style.backgroundColor = "#"+color;
                     loadXMLDoc(color);
                     console.log("Enter key pressed "+color+"\n"+r+", "+g+", "+b);
